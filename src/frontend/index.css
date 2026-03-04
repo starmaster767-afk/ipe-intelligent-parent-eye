@@ -1,0 +1,244 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ============================================================
+   IPE — Intelligent Parent Eye
+   Design System: Deep Navy + Teal + Warm Amber Alert
+   ============================================================ */
+
+/* Bricolage Grotesque — Display / Headings */
+@font-face {
+  font-family: "Bricolage Grotesque";
+  src: url("/assets/fonts/BricolageGrotesque-Variable.woff2") format("woff2");
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Sora — Body / UI Text */
+@font-face {
+  font-family: "Sora";
+  src: url("/assets/fonts/Sora-Variable.woff2") format("woff2");
+  font-weight: 100 800;
+  font-style: normal;
+  font-display: swap;
+}
+
+@layer base {
+  :root {
+    --radius: 0.875rem;
+
+    /* Navy dark background — signature IPE look */
+    --background: 0.14 0.022 250;
+    --foreground: 0.95 0.01 240;
+
+    /* Card — slightly lighter navy */
+    --card: 0.175 0.028 252;
+    --card-foreground: 0.95 0.01 240;
+
+    /* Popover */
+    --popover: 0.19 0.03 252;
+    --popover-foreground: 0.95 0.01 240;
+
+    /* Primary — vibrant teal */
+    --primary: 0.65 0.18 195;
+    --primary-foreground: 0.08 0.02 250;
+
+    /* Secondary — muted navy */
+    --secondary: 0.22 0.04 252;
+    --secondary-foreground: 0.85 0.01 240;
+
+    /* Muted */
+    --muted: 0.2 0.025 252;
+    --muted-foreground: 0.55 0.04 240;
+
+    /* Accent — bright teal highlight */
+    --accent: 0.7 0.2 195;
+    --accent-foreground: 0.08 0.02 250;
+
+    /* Destructive — warm red */
+    --destructive: 0.62 0.22 25;
+    --destructive-foreground: 0.97 0 0;
+
+    /* Borders */
+    --border: 0.28 0.04 252;
+    --input: 0.24 0.035 252;
+    --ring: 0.65 0.18 195;
+
+    /* Chart colors */
+    --chart-1: 0.65 0.18 195;
+    --chart-2: 0.7 0.18 145;
+    --chart-3: 0.75 0.18 85;
+    --chart-4: 0.72 0.22 25;
+    --chart-5: 0.65 0.22 300;
+
+    /* Sidebar */
+    --sidebar: 0.11 0.022 252;
+    --sidebar-foreground: 0.9 0.01 240;
+    --sidebar-primary: 0.65 0.18 195;
+    --sidebar-primary-foreground: 0.08 0.02 250;
+    --sidebar-accent: 0.22 0.04 252;
+    --sidebar-accent-foreground: 0.85 0.01 240;
+    --sidebar-border: 0.22 0.035 252;
+    --sidebar-ring: 0.65 0.18 195;
+
+    /* IPE Custom Tokens */
+    --success: 0.68 0.18 145;
+    --success-foreground: 0.08 0.02 145;
+    --warning: 0.75 0.18 75;
+    --warning-foreground: 0.15 0.04 75;
+    --alert-accent: 0.72 0.22 25;
+    --glow-primary: 0.65 0.18 195;
+    --surface-raised: 0.2 0.03 252;
+    --nav-height: 4rem;
+  }
+
+  * {
+    @apply border-border;
+  }
+
+  html {
+    color-scheme: dark;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+    font-family: "Sora", sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: "Bricolage Grotesque", sans-serif;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+  }
+}
+
+@layer utilities {
+  /* Glow effects */
+  .glow-primary {
+    box-shadow: 0 0 20px oklch(var(--primary) / 0.3), 0 0 40px oklch(var(--primary) / 0.1);
+  }
+
+  .glow-sm {
+    box-shadow: 0 0 10px oklch(var(--primary) / 0.2);
+  }
+
+  /* Screen time progress colors */
+  .progress-safe {
+    --progress-color: oklch(var(--success));
+  }
+
+  .progress-warning {
+    --progress-color: oklch(var(--warning));
+  }
+
+  .progress-exceeded {
+    --progress-color: oklch(var(--destructive));
+  }
+
+  /* App shell */
+  .app-shell {
+    max-width: 430px;
+    margin: 0 auto;
+    min-height: 100dvh;
+    position: relative;
+    background: oklch(var(--background));
+  }
+
+  .desktop-bg {
+    background: oklch(0.1 0.018 252);
+  }
+
+  /* Timeline accent line */
+  .timeline-line {
+    border-left: 2px solid oklch(var(--primary) / 0.4);
+  }
+
+  /* Card hover lift */
+  .card-lift {
+    transition: transform 0.15s ease, box-shadow 0.15s ease;
+  }
+
+  .card-lift:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px oklch(var(--primary) / 0.15);
+  }
+
+  /* Mesh background for hero areas */
+  .mesh-bg {
+    background: 
+      radial-gradient(ellipse at 0% 0%, oklch(var(--primary) / 0.12) 0%, transparent 50%),
+      radial-gradient(ellipse at 100% 100%, oklch(0.55 0.18 220 / 0.08) 0%, transparent 50%),
+      oklch(var(--background));
+  }
+
+  /* Bottom nav safe area */
+  .bottom-nav {
+    padding-bottom: env(safe-area-inset-bottom, 0);
+  }
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 4px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: oklch(var(--border));
+  border-radius: 2px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: oklch(var(--muted-foreground));
+}
+
+/* Ring focus style */
+:focus-visible {
+  outline: 2px solid oklch(var(--ring));
+  outline-offset: 2px;
+}
+
+/* Animations */
+@keyframes pulse-glow {
+  0%, 100% {
+    box-shadow: 0 0 8px oklch(var(--primary) / 0.4);
+  }
+  50% {
+    box-shadow: 0 0 16px oklch(var(--primary) / 0.7);
+  }
+}
+
+@keyframes slide-up {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fade-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.animate-slide-up {
+  animation: slide-up 0.4s ease forwards;
+}
+
+.animate-fade-in {
+  animation: fade-in 0.3s ease forwards;
+}
+
+.animate-pulse-glow {
+  animation: pulse-glow 2s ease-in-out infinite;
+}
